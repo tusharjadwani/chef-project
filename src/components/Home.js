@@ -1547,7 +1547,7 @@ const Home = () => {
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">First Name <span className="dropdown">
-                                <button style={{ padding: 0, marginLeft: "10px" }} className="btn dropdown-toggle" data-bs-toggle="dropdown" >
+                                <button style={{ padding: 0, marginLeft: "10px",color:"white",backgroundColor:"black" }} className="btn dropdown-toggle" data-bs-toggle="dropdown" >
                                     Filter
                                 </button>
                                 <ul className="dropdown-menu">
