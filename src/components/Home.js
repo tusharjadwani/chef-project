@@ -1518,21 +1518,31 @@ const Home = () => {
     }
 
     const sortAZ = () => {
-        const sortasc = extract.sort((a,b) => (a.first_name > b.first_name) ? 1 : ((b.first_name > a.first_name) ? -1 : 0))
+        const sortasc = extract.sort((a, b) => (a.first_name > b.first_name) ? 1 : ((b.first_name > a.first_name) ? -1 : 0))
         setData(sortasc);
     }
-    
+
     const sortZA = () => {
-        const sortdec = extract.sort((a,b) => (a.first_name < b.first_name) ? 1 : ((b.first_name < a.first_name) ? -1 : 0))
+        const sortdec = extract.sort((a, b) => (a.first_name < b.first_name) ? 1 : ((b.first_name < a.first_name) ? -1 : 0))
         setData(sortdec);
 
+    }
+
+    const changeColor = (element) => {
+        const tr=document.getElementById(element.sno).classList;
+        if(tr.contains('table-success')){
+            tr.remove('table-success')
+        }
+        else{
+            tr.add('table-success');
+        }
     }
 
     return (
         <div className='container'>
             <h1 className='my-3' style={{ textAlign: "center" }}>Data</h1>
             <div className="container my-3">
-                <table className="table table-striped">
+                <table className="table">
                     <thead>
                         <tr>
                             <th scope="col">Id</th>
@@ -1550,19 +1560,23 @@ const Home = () => {
                             <th scope="col">Email</th>
                             <th scope="col">Gender</th>
                             <th scope="col">Mobile</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Color Change</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         {data && data.map(element => {
                             // console.log(data[0]);
-                            return <tr key={element.sno}>
+                            return <tr id={element.sno} key={element.sno}>
                                 <th scope="row">{element.sno}</th>
                                 <td>{element.first_name}</td>
-                                <td>{element.last_name}</td>
+                                <td >{element.last_name}</td>
                                 <td>{element.email}</td>
                                 <td>{element.gender}</td>
                                 <td>{element.mobile}</td>
+                                <td style={{ color: !element.status ? "red" : "green" }}>{String(element.status).slice(0, 1).toLocaleUpperCase() + String(element.status).slice(1)}</td>
+                                <td><button onClick={()=>changeColor(element)} className='btn btn-primary'>Change</button></td>
                             </tr>
                         })}
 
